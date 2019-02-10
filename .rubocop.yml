@@ -1,0 +1,821 @@
+AllCops:
+  TargetRubyVersion: 2.6
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  Exclude:
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'bin/*'
+    - 'db/**/*'
+    - 'Dangerfile'
+
+# LINT COPS
+
+Lint/BooleanSymbol:
+  Enabled: true
+
+Lint/AssignmentInCondition:
+  Enabled: False
+
+# Those two exceptions are fine, both are safe
+# Cop supports --auto-correct.
+Lint/Debugger:
+  Exclude:
+    - 'app/models/amazon_book_buyer.rb'
+    - 'app/models/concerns/goodreads_parser.rb'
+
+Lint/HandleExceptions:
+  Enabled: false
+
+Lint/UnusedBlockArgument:
+  Exclude:
+    - 'app/graph/**/*.rb'
+
+# RAILS COPS
+
+Rails:
+  Enabled: true
+
+Rails/NotNullColumn:
+  Enabled: false
+
+Rails/Output:
+  Description: Checks for calls to puts, print, etc.
+  Enabled: true
+  Include:
+  - app/**/*.rb
+  - config/**/*.rb
+  - db/**/*.rb
+  - lib/**/*.rb
+
+Rails/TimeZone:
+  Enabled: true
+  Description: Checks the correct usage of time zone aware methods.
+  StyleGuide: https://github.com/bbatsov/rails-style-guide#time
+  Reference: http://danilenko.org/2012/7/6/rails_timezones
+  EnforcedStyle: flexible
+  SupportedStyles:
+  - strict
+  - flexible
+
+# STYLE COPS
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
+# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
+Style/HashSyntax:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, ConsistentQuotesInMultiline.
+# SupportedStyles: single_quotes, double_quotes
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/ConditionalAssignment:
+  Enabled: false
+
+Style/SingleLineBlockParams:
+  Enabled: false
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: prefer_alias, prefer_alias_method
+Style/Alias:
+  SupportedStyles:
+   - prefer_alias
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, ProceduralMethods, FunctionalMethods, IgnoredMethods.
+# SupportedStyles: line_count_based, semantic, braces_for_chaining
+# ProceduralMethods: benchmark, bm, bmbm, create, each_with_object, measure, new, realtime, tap, with_object
+# FunctionalMethods: let, let!, subject, watch
+# IgnoredMethods: lambda, proc, it
+Style/BlockDelimiters:
+  Exclude:
+    - 'lib/rmagick_text_util.rb'
+    - 'spec/**/*.rb'
+    - 'app/graph/mutations/cash_payment_mutation.rb'
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: braces, no_braces, context_dependent
+Style/BracesAroundHashParameters:
+  EnforcedStyle: no_braces
+
+
+# Add support for global redis instance and global statsd instance
+GlobalVars:
+  AllowedVariables:
+    - $redis
+    - $statsd
+
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+# LAYOUT COPS
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: leading, trailing
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+# Cop supports --auto-correct.
+Layout/BlockEndNewline:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Layout/AlignHash:
+  Enabled: false
+
+# Cop supports --auto-correct.
+Layout/EmptyLines:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: empty_lines, no_empty_lines
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: empty_lines, no_empty_lines
+Layout/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+
+Layout/EmptyLineAfterMagicComment:
+  Enabled: false
+
+Lint/DuplicateMethods:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Lint/RedundantWithIndex:
+  Enabled: true
+
+Lint/Void:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: NilOrEmpty, NotPresent, UnlessPresent.
+Rails/Blank:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Rails/ApplicationRecord:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: NotNilAndNotEmpty, NotBlank, UnlessBlank.
+Rails/Present:
+  Enabled: true
+
+# Configuration parameters: Include.
+# Include: db/migrate/*.rb
+Rails/ReversibleMigration:
+  Enabled: true
+
+Style/CommentedKeyword:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/Encoding:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: compact, expanded
+Style/EmptyMethod:
+  Enabled: false
+
+Style/IdenticalConditionalBranches:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: InverseMethods, InverseBlocks.
+Style/InverseMethods:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: AllowMultipleReturnValues.
+Style/RedundantReturn:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: ConvertCodeThatCanStartToReturnNil.
+Style/SafeNavigation:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: ConvertTry.
+Rails/SafeNavigation:
+  Enabled: true
+  ConvertTry: true
+
+# Enable once we upgrade to Rails 5
+Rails/HttpPositionalArguments:
+  Enabled: false
+
+Style/EvalWithLocation:
+  Enabled: true
+
+Rails/CreateTableWithTimestamps:
+  Enabled: true
+
+Rails/InverseOf:
+  Enabled: true
+
+Layout/EmptyLinesAroundArguments:
+  Enabled: true
+
+# Configuration parameters: Include.
+# Include: app/models/**/*.rb
+Rails/HasManyOrHasOneDependent:
+  Enabled: true
+
+# Configuration parameters: Blacklist.
+# Blacklist: decrement!, decrement_counter, increment!, increment_counter, toggle!, touch, update_all, update_attribute, update_column, update_columns, update_counters
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Security/MarshalLoad:
+  Enabled: true
+  Exclude:
+    - 'app/controllers/goodreads_controller.rb'
+
+# Configuration parameters: SupportedStyles.
+# SupportedStyles: annotated, template
+Style/FormatStringToken:
+  Enabled: true
+  EnforcedStyle: template
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: separated, grouped
+Style/MixinGrouping:
+  Enabled: false
+  EnforcedStyle: grouped
+
+Style/MixinUsage:
+  Enabled: true
+  Exclude:
+    - "spec/support/warden.rb"
+    - "app/graph/**/*"
+
+# Cop supports --auto-correct.
+Style/MultilineIfModifier:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: PreferredDelimiters.
+Style/PercentLiteralDelimiters:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: MinSize, SupportedStyles.
+# SupportedStyles: percent, brackets
+Style/SymbolArray:
+  Enabled: true
+  EnforcedStyle: brackets
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: all_comparison_operators, equality_operators_only
+Style/YodaCondition:
+  Enabled: true
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Layout/EmptyLinesAroundExceptionHandlingKeywords:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: require_no_space, require_space
+Layout/SpaceInLambdaLiteral:
+  Enabled: true
+  EnforcedStyle: require_space
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: auto_detection, squiggly, active_support, powerpack, unindent
+Layout/IndentHeredoc:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/ColonMethodCall:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/EachWithObject:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Layout/ElseAlignment:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: empty_lines, no_empty_lines
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: true
+
+# Configuration parameters: MinBodyLength.
+Style/GuardClause:
+  Enabled: true
+  MinBodyLength: 4
+  Exclude:
+    - "app/models/amazon_book_fetcher.rb"
+    - "app/models/concerns/progress_creator.rb"
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
+# SupportedStyles: special_inside_parentheses, consistent, align_brackets
+Layout/IndentArray:
+  Enabled: true
+  EnforcedStyle: consistent
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: format, sprintf, percent
+Style/FormatString:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: Width.
+Layout/IndentationWidth:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/LineEndConcatenation:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: symmetrical, new_line, same_line
+Layout/MultilineMethodCallBraceLayout:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: normal, rails
+Layout/IndentationConsistency:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
+# SupportedStyles: aligned, indented, indented_relative_to_receiver
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+  EnforcedStyle: indented
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
+# SupportedStyles: special_inside_parentheses, consistent, align_braces
+Layout/IndentHash:
+  Enabled: true
+  EnforcedStyle: consistent
+
+# Cop supports --auto-correct.
+Style/RedundantFreeze:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: ExactNameMatch, AllowPredicates, AllowDSLWriters, IgnoreClassMethods, Whitelist.
+# Whitelist: to_ary, to_a, to_c, to_enum, to_h, to_hash, to_i, to_int, to_io, to_open, to_path, to_proc, to_r, to_regexp, to_str, to_s, to_sym
+Style/TrivialAccessors:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: snake_case, camelCase
+Naming/VariableName:
+  Enabled: true
+  EnforcedStyle: snake_case
+
+Style/MultilineTernaryOperator:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, MinBodyLength, SupportedStyles.
+# SupportedStyles: skip_modifier_ifs, always
+Style/Next:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/NilComparison:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/Proc:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Layout/SpaceAroundKeyword:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/UnneededInterpolation:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: MaxLineLength.
+Style/WhileUntilModifier:
+  Enabled: false
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: nested, compact
+Style/ClassAndModuleChildren:
+  Enabled: true
+  EnforcedStyle: nested
+  Exclude:
+    - 'config/**/*'
+
+# Cop supports --auto-correct.
+# Configuration parameters: AllowForAlignment, ForceEqualSignAlignment.
+Layout/ExtraSpacing:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: MaxLineLength.
+Style/IfUnlessModifier:
+  Enabled: false
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: line_count_dependent, lambda, literal
+Style/Lambda:
+  Enabled: false
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: symmetrical, new_line, same_line
+Layout/MultilineArrayBraceLayout:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Layout/MultilineBlockLayout:
+  Enabled: true
+  Exclude:
+    - "spec/**/*.rb"
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
+# SupportedStyles: aligned, indented
+Layout/MultilineOperationIndentation:
+  Enabled: true
+  EnforcedStyle: indented
+
+# Cop supports --auto-correct.
+Style/MutableConstant:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/NegatedIf:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/NestedParenthesizedCalls:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Layout/ClosingParenthesisIndentation:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Layout/LeadingBlankLines:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Lint/UnneededCopDisableDirective:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: Whitelist.
+# Whitelist: present?, blank?, presence, try, try!
+Lint/SafeNavigationConsistency:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyleForMultiline.
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+Style/TrailingCommaInHashLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
+
+# Cop supports --auto-correct.
+# Configuration parameters: AllowMultipleReturnValues.
+Style/RedundantReturn:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/UnneededCondition:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/ExpandPathArguments:
+  Enabled: false
+
+# Cop supports --auto-correct.
+Rails/ActiveRecordAliases:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Performance/UnneededSort:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: numeric, symbolic
+Rails/HttpStatus:
+  Enabled: true
+  EnforcedStyle: numeric
+
+# Cop supports --auto-correct.
+# Configuration parameters: AllowSafeAssignment.
+Style/ParenthesesAroundCondition:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/RedundantBegin:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/RedundantException:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/RedundantSelf:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Layout/RescueEnsureAlignment:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: AllowAsExpressionSeparator.
+Style/Semicolon:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Layout/SpaceAfterComma:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: space, no_space
+Layout/SpaceAroundEqualsInParameterDefault:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: AllowForAlignment.
+Layout/SpaceAroundOperators:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: space, no_space
+Layout/SpaceBeforeBlockBraces:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SupportedStyles.
+# SupportedStyles: space, no_space, compact
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Layout/SpaceInsideParens:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: space, no_space
+Layout/SpaceInsideStringInterpolation:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: final_newline, final_blank_line
+Layout/TrailingBlankLines:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
+# SupportedStyles: comma, consistent_comma, no_comma
+Style/TrailingCommaInArguments:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Style/ParallelAssignment:
+  Enabled: true
+  Exclude:
+    - "app/workers/category_book_position_updater_worker.rb"
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+####################################################################
+#TODO(max): Decide which of these we're going to use and disable the rest
+
+# Offense count: 10
+# Cop supports --auto-correct.
+Style/NumericLiterals:
+  Enabled: false
+  MinDigits: 15
+
+# Offense count: 8
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: predicate, comparison
+Style/NumericPredicate:
+  Enabled: false
+  Exclude:
+    - 'spec/**/*'
+
+# Offense count: 21
+# Configuration parameters: NamePrefix, NamePrefixBlacklist, NameWhitelist.
+# NamePrefix: is_, has_, have_
+# NamePrefixBlacklist: is_, has_, have_
+# NameWhitelist: is_a?
+Naming/PredicateName:
+  Enabled: false
+
+# Offense count: 5
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: compact, exploded
+Style/RaiseArgs:
+  Enabled: false
+
+# Offense count: 7
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, AllowInnerSlashes.
+# SupportedStyles: slashes, percent_r, mixed
+Style/RegexpLiteral:
+  Enabled: false
+
+# Offense count: 5
+# Cop supports --auto-correct.
+Style/RescueModifier:
+  Enabled: false
+
+# Offense count: 4
+# Cop supports --auto-correct.
+Layout/SpaceInsidePercentLiteralDelimiters:
+  Enabled: false
+
+# Offense count: 28
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: single_quotes, double_quotes
+Style/StringLiteralsInInterpolation:
+  Enabled: false
+
+# Offense count: 10
+# Cop supports --auto-correct.
+# Configuration parameters: IgnoredMethods.
+# IgnoredMethods: respond_to, define_method
+Style/SymbolProc:
+  Enabled: false
+
+# Offense count: 61
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
+# SupportedStyles: comma, consistent_comma, no_comma
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+# Offense count: 57
+# Cop supports --auto-correct.
+Layout/TrailingWhitespace:
+  Enabled: false
+
+# Offense count: 6
+# Configuration parameters: SupportedStyles.
+# SupportedStyles: snake_case, normalcase, non_integer
+Naming/VariableNumber:
+  Enabled: false
+  EnforcedStyle: normalcase
+
+# Offense count: 20
+# Cop supports --auto-correct.
+# Configuration parameters: SupportedStyles, WordRegex.
+# SupportedStyles: percent, brackets
+Style/WordArray:
+  Enabled: false
+  EnforcedStyle: percent
+  MinSize: 33
+
+# Offense count: 5
+# Cop supports --auto-correct.
+Style/ZeroLengthPredicate:
+  Enabled: false
+
+# METRICS
+
+# Offense count: 77
+Metrics/AbcSize:
+  Enabled: false
+  Max: 54
+
+# Offense count: 1
+Metrics/BlockNesting:
+  Enabled: false
+  Max: 4
+
+# Offense count: 11
+# Configuration parameters: CountComments.
+Metrics/ClassLength:
+  Enabled: false
+  Max: 780
+
+# Offense count: 12
+Metrics/CyclomaticComplexity:
+  Enabled: false
+  Max: 11
+
+# Offense count: 808
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
+# URISchemes: http, https
+Metrics/LineLength:
+  Enabled: false
+  Max: 263
+
+# Offense count: 72
+# Configuration parameters: CountComments.
+Metrics/MethodLength:
+  Enabled: false
+  Max: 885
+
+# Offense count: 1
+# Configuration parameters: CountKeywordArgs.
+Metrics/ParameterLists:
+  Enabled: false
+  Max: 6
+
+# Offense count: 4
+Metrics/PerceivedComplexity:
+  Enabled: false
+  Max: 11
+
+# Offense count: 28
+Style/RescueStandardError:
+  Enabled: false
+
+# Offense count: 95
+# Configuration parameters: CountComments, ExcludedMethods.
+Metrics/BlockLength:
+  Enabled: false
+  Max: 909
+
+# Offense count: 63
+# Configuration parameters: EnforcedStyleForLeadingUnderscores.
+# SupportedStylesForLeadingUnderscores: disallowed, required, optional
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+# Offense count: 16
+# Configuration parameters: MinNameLength, AllowNamesEndingInNumbers, AllowedNames, ForbiddenNames.
+# AllowedNames: io, id, to, by, on, in, at, ip
+Naming/UncommunicativeMethodParamName:
+  Exclude:
+    - 'app/models/category.rb'
+    - 'app/models/currency_converter.rb'
+    - 'app/models/list.rb'
+    - 'app/models/next_books.rb'
+    - 'app/models/next_models.rb'
+    - 'app/models/tamber_recommender.rb'
+
+# Offense count: 2
+Security/Open:
+  Exclude:
+    - 'app/models/concerns/quotes_page_image.rb'
+    - 'app/workers/quote_share_worker.rb'
+
+# Offense count: 1
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: inline, group
+Style/AccessModifierDeclarations:
+  Exclude:
+    - 'app/models/user.rb'
