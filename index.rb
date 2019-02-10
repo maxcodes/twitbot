@@ -6,7 +6,7 @@ require "./scripts"
 Time.zone = "America/Mexico_City"
 
 loop do
-  if Time.now.day.odd?
+  if Time.zone.now.day.odd?
     Scripts.follow_people!
   else
     Scripts.unfollow_people!

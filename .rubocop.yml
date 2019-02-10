@@ -3,13 +3,9 @@ AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
   Exclude:
-    - 'node_modules/**/*'
     - 'vendor/**/*'
     - 'bin/*'
     - 'db/**/*'
-    - 'Dangerfile'
-
-# LINT COPS
 
 Lint/BooleanSymbol:
   Enabled: true
@@ -17,21 +13,15 @@ Lint/BooleanSymbol:
 Lint/AssignmentInCondition:
   Enabled: False
 
-# Those two exceptions are fine, both are safe
 # Cop supports --auto-correct.
 Lint/Debugger:
-  Exclude:
-    - 'app/models/amazon_book_buyer.rb'
-    - 'app/models/concerns/goodreads_parser.rb'
+  Enabled: true
 
 Lint/HandleExceptions:
   Enabled: false
 
 Lint/UnusedBlockArgument:
-  Exclude:
-    - 'app/graph/**/*.rb'
-
-# RAILS COPS
+  Enabled: true
 
 Rails:
   Enabled: true
@@ -58,7 +48,8 @@ Rails/TimeZone:
   - strict
   - flexible
 
-# STYLE COPS
+Style/FrozenStringLiteralComment:
+  Enabled: false
 
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
@@ -98,10 +89,7 @@ Style/BlockComments:
 # FunctionalMethods: let, let!, subject, watch
 # IgnoredMethods: lambda, proc, it
 Style/BlockDelimiters:
-  Exclude:
-    - 'lib/rmagick_text_util.rb'
-    - 'spec/**/*.rb'
-    - 'app/graph/mutations/cash_payment_mutation.rb'
+  Enabled: true
 
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
@@ -225,9 +213,8 @@ Rails/SafeNavigation:
   Enabled: true
   ConvertTry: true
 
-# Enable once we upgrade to Rails 5
 Rails/HttpPositionalArguments:
-  Enabled: false
+  Enabled: true
 
 Style/EvalWithLocation:
   Enabled: true
@@ -253,8 +240,6 @@ Rails/SkipsModelValidations:
 
 Security/MarshalLoad:
   Enabled: true
-  Exclude:
-    - 'app/controllers/goodreads_controller.rb'
 
 # Configuration parameters: SupportedStyles.
 # SupportedStyles: annotated, template
@@ -271,9 +256,6 @@ Style/MixinGrouping:
 
 Style/MixinUsage:
   Enabled: true
-  Exclude:
-    - "spec/support/warden.rb"
-    - "app/graph/**/*"
 
 # Cop supports --auto-correct.
 Style/MultilineIfModifier:
@@ -342,10 +324,9 @@ Layout/EmptyLinesAroundModuleBody:
 # Configuration parameters: MinBodyLength.
 Style/GuardClause:
   Enabled: true
-  MinBodyLength: 4
   Exclude:
-    - "app/models/amazon_book_fetcher.rb"
-    - "app/models/concerns/progress_creator.rb"
+    - "app/controllers/api/v1/authentications_controller.rb"
+
 
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
@@ -444,9 +425,9 @@ Style/WhileUntilModifier:
 # SupportedStyles: nested, compact
 Style/ClassAndModuleChildren:
   Enabled: true
-  EnforcedStyle: nested
+  EnforcedStyle: compact
   Exclude:
-    - 'config/**/*'
+    - "config/application.rb"
 
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment, ForceEqualSignAlignment.
@@ -546,7 +527,7 @@ Performance/UnneededSort:
 # SupportedStyles: numeric, symbolic
 Rails/HttpStatus:
   Enabled: true
-  EnforcedStyle: numeric
+  EnforcedStyle: symbolic
 
 # Cop supports --auto-correct.
 # Configuration parameters: AllowSafeAssignment.
@@ -629,8 +610,6 @@ Bundler/OrderedGems:
 
 Style/ParallelAssignment:
   Enabled: true
-  Exclude:
-    - "app/workers/category_book_position_updater_worker.rb"
 
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
@@ -638,13 +617,11 @@ Layout/EmptyLineAfterGuardClause:
 ####################################################################
 #TODO(max): Decide which of these we're going to use and disable the rest
 
-# Offense count: 10
 # Cop supports --auto-correct.
 Style/NumericLiterals:
   Enabled: false
   MinDigits: 15
 
-# Offense count: 8
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: predicate, comparison
@@ -653,7 +630,6 @@ Style/NumericPredicate:
   Exclude:
     - 'spec/**/*'
 
-# Offense count: 21
 # Configuration parameters: NamePrefix, NamePrefixBlacklist, NameWhitelist.
 # NamePrefix: is_, has_, have_
 # NamePrefixBlacklist: is_, has_, have_
@@ -661,64 +637,54 @@ Style/NumericPredicate:
 Naming/PredicateName:
   Enabled: false
 
-# Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: compact, exploded
 Style/RaiseArgs:
   Enabled: false
 
-# Offense count: 7
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, AllowInnerSlashes.
 # SupportedStyles: slashes, percent_r, mixed
 Style/RegexpLiteral:
   Enabled: false
 
-# Offense count: 5
 # Cop supports --auto-correct.
 Style/RescueModifier:
   Enabled: false
 
-# Offense count: 4
 # Cop supports --auto-correct.
 Layout/SpaceInsidePercentLiteralDelimiters:
   Enabled: false
 
-# Offense count: 28
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: single_quotes, double_quotes
 Style/StringLiteralsInInterpolation:
   Enabled: false
 
-# Offense count: 10
 # Cop supports --auto-correct.
 # Configuration parameters: IgnoredMethods.
 # IgnoredMethods: respond_to, define_method
 Style/SymbolProc:
   Enabled: false
 
-# Offense count: 61
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
 # SupportedStyles: comma, consistent_comma, no_comma
 Style/TrailingCommaInArrayLiteral:
   Enabled: false
 
-# Offense count: 57
 # Cop supports --auto-correct.
 Layout/TrailingWhitespace:
-  Enabled: false
+  Enabled: true
 
-# Offense count: 6
 # Configuration parameters: SupportedStyles.
 # SupportedStyles: snake_case, normalcase, non_integer
 Naming/VariableNumber:
   Enabled: false
   EnforcedStyle: normalcase
 
-# Offense count: 20
 # Cop supports --auto-correct.
 # Configuration parameters: SupportedStyles, WordRegex.
 # SupportedStyles: percent, brackets
@@ -727,95 +693,71 @@ Style/WordArray:
   EnforcedStyle: percent
   MinSize: 33
 
-# Offense count: 5
 # Cop supports --auto-correct.
 Style/ZeroLengthPredicate:
   Enabled: false
 
 # METRICS
 
-# Offense count: 77
 Metrics/AbcSize:
   Enabled: false
   Max: 54
 
-# Offense count: 1
 Metrics/BlockNesting:
   Enabled: false
   Max: 4
 
-# Offense count: 11
 # Configuration parameters: CountComments.
 Metrics/ClassLength:
   Enabled: false
   Max: 780
 
-# Offense count: 12
 Metrics/CyclomaticComplexity:
   Enabled: false
   Max: 11
 
-# Offense count: 808
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
 # URISchemes: http, https
 Metrics/LineLength:
   Enabled: false
   Max: 263
 
-# Offense count: 72
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
   Enabled: false
   Max: 885
 
-# Offense count: 1
 # Configuration parameters: CountKeywordArgs.
 Metrics/ParameterLists:
   Enabled: false
   Max: 6
 
-# Offense count: 4
 Metrics/PerceivedComplexity:
   Enabled: false
   Max: 11
 
-# Offense count: 28
 Style/RescueStandardError:
   Enabled: false
 
-# Offense count: 95
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/BlockLength:
   Enabled: false
   Max: 909
 
-# Offense count: 63
 # Configuration parameters: EnforcedStyleForLeadingUnderscores.
 # SupportedStylesForLeadingUnderscores: disallowed, required, optional
 Naming/MemoizedInstanceVariableName:
   Enabled: false
 
-# Offense count: 16
 # Configuration parameters: MinNameLength, AllowNamesEndingInNumbers, AllowedNames, ForbiddenNames.
 # AllowedNames: io, id, to, by, on, in, at, ip
 Naming/UncommunicativeMethodParamName:
-  Exclude:
-    - 'app/models/category.rb'
-    - 'app/models/currency_converter.rb'
-    - 'app/models/list.rb'
-    - 'app/models/next_books.rb'
-    - 'app/models/next_models.rb'
-    - 'app/models/tamber_recommender.rb'
+  Enabled: false
 
-# Offense count: 2
 Security/Open:
-  Exclude:
-    - 'app/models/concerns/quotes_page_image.rb'
-    - 'app/workers/quote_share_worker.rb'
+  Enabled: false
 
-# Offense count: 1
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: inline, group
 Style/AccessModifierDeclarations:
-  Exclude:
-    - 'app/models/user.rb'
+  Enabled: false
