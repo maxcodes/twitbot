@@ -18,7 +18,7 @@ class Scripts
   def self.unfollow_people!
     return if Time.now.hour < 8
     lucky_one = User.we_are_following.first
-    puts("no more people to unfollow") && return unless lucky_one
+    return puts("no more people to unfollow") unless lucky_one
     lucky_one.unfollow!
   end
 
