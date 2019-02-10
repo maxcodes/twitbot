@@ -3,8 +3,8 @@ require "yaml"
 
 namespace :db do
 
-  db_config       = YAML::load(File.open("config/database.yml"))
-  db_config_admin = db_config.merge({"database" => "postgres", "schema_search_path" => "public"})
+  db_config       = YAML.safe_load(File.open("config/database.yml"))
+  db_config_admin = db_config.merge("database" => "postgres", "schema_search_path" => "public")
 
   desc "Create the database"
   task :create do
@@ -53,14 +53,14 @@ namespace :g do
 
     `touch #{path}`
     File.open(path, "w") do |file|
-      file.write <<-EOF
-class #{migration_class} < ActiveRecord::Migration[5.2]
-  def self.up
-  end
-  def self.down
-  end
-end
-      EOF
+      file.write <<~MIGRATION
+        class #{migration_class} < ActiveRecord::Migration[5.2]
+          def self.up
+          end
+          def self.down
+          end
+        end
+      MIGRATION
     end
 
     puts "Migration #{path} created"

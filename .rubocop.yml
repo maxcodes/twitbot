@@ -23,31 +23,6 @@ Lint/HandleExceptions:
 Lint/UnusedBlockArgument:
   Enabled: true
 
-Rails:
-  Enabled: true
-
-Rails/NotNullColumn:
-  Enabled: false
-
-Rails/Output:
-  Description: Checks for calls to puts, print, etc.
-  Enabled: true
-  Include:
-  - app/**/*.rb
-  - config/**/*.rb
-  - db/**/*.rb
-  - lib/**/*.rb
-
-Rails/TimeZone:
-  Enabled: true
-  Description: Checks the correct usage of time zone aware methods.
-  StyleGuide: https://github.com/bbatsov/rails-style-guide#time
-  Reference: http://danilenko.org/2012/7/6/rails_timezones
-  EnforcedStyle: flexible
-  SupportedStyles:
-  - strict
-  - flexible
-
 Style/FrozenStringLiteralComment:
   Enabled: false
 
@@ -154,28 +129,6 @@ Lint/RedundantWithIndex:
 Lint/Void:
   Enabled: true
 
-# Cop supports --auto-correct.
-# Configuration parameters: NilOrEmpty, NotPresent, UnlessPresent.
-Rails/Blank:
-  Enabled: true
-
-# Cop supports --auto-correct.
-Rails/ApplicationRecord:
-  Enabled: false
-
-Rails/FilePath:
-  Enabled: true
-
-# Cop supports --auto-correct.
-# Configuration parameters: NotNilAndNotEmpty, NotBlank, UnlessBlank.
-Rails/Present:
-  Enabled: true
-
-# Configuration parameters: Include.
-# Include: db/migrate/*.rb
-Rails/ReversibleMigration:
-  Enabled: true
-
 Style/CommentedKeyword:
   Enabled: true
 
@@ -207,36 +160,21 @@ Style/RedundantReturn:
 Style/SafeNavigation:
   Enabled: true
 
-# Cop supports --auto-correct.
-# Configuration parameters: ConvertTry.
-Rails/SafeNavigation:
-  Enabled: true
-  ConvertTry: true
-
-Rails/HttpPositionalArguments:
-  Enabled: true
-
 Style/EvalWithLocation:
   Enabled: true
 
-Rails/CreateTableWithTimestamps:
+Style/MethodMissingSuper:
   Enabled: true
+  Exclude:
+    - "services/twitter_client.rb"
 
-Rails/InverseOf:
+Style/MissingRespondToMissing:
   Enabled: true
+  Exclude:
+    - "services/twitter_client.rb"
 
 Layout/EmptyLinesAroundArguments:
   Enabled: true
-
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/HasManyOrHasOneDependent:
-  Enabled: true
-
-# Configuration parameters: Blacklist.
-# Blacklist: decrement!, decrement_counter, increment!, increment_counter, toggle!, touch, update_all, update_attribute, update_column, update_columns, update_counters
-Rails/SkipsModelValidations:
-  Enabled: false
 
 Security/MarshalLoad:
   Enabled: true
@@ -353,12 +291,6 @@ Style/LineEndConcatenation:
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: symmetrical, new_line, same_line
 Layout/MultilineMethodCallBraceLayout:
-  Enabled: true
-
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: normal, rails
-Layout/IndentationConsistency:
   Enabled: true
 
 # Cop supports --auto-correct.
@@ -515,19 +447,8 @@ Style/ExpandPathArguments:
   Enabled: false
 
 # Cop supports --auto-correct.
-Rails/ActiveRecordAliases:
-  Enabled: true
-
-# Cop supports --auto-correct.
 Performance/UnneededSort:
   Enabled: true
-
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: numeric, symbolic
-Rails/HttpStatus:
-  Enabled: true
-  EnforcedStyle: symbolic
 
 # Cop supports --auto-correct.
 # Configuration parameters: AllowSafeAssignment.

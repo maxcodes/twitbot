@@ -1,12 +1,13 @@
 require "active_record"
 class User < ActiveRecord::Base
+
   establish_connection(adapter: "postgresql", database: "twitters")
 
-  MY_USERNAME = "maxholzheu"
+  MY_USERNAME = "maxholzheu".freeze
 
   def self.we_are_not_following
     where.not(we_currently_follow_them: true).
-    where.not(we_followed_them_in_the_past: true)
+      where.not(we_followed_them_in_the_past: true)
   end
 
   def self.we_are_following
@@ -44,7 +45,7 @@ class User < ActiveRecord::Base
   end
 
   def self.follows?(client, id)
-    ENV["SKIP_FOLLOW_CHECK"] == nil && client.friendship?(MY_USERNAME, id)
+    ENV["SKIP_FOLLOW_CHECK"].nil? && client.friendship?(MY_USERNAME, id)
   rescue Twitter::Error::TooManyRequests => error
     sleep_time = error.rate_limit.reset_in + 1
     puts "sleeping for #{sleep_time} (rate limit hit)"
