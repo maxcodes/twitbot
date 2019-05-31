@@ -11,7 +11,7 @@ loop do
   else
     Scripts.unfollow_people!
   end
-  sleep_time = rand(100..200)
+  sleep_time = rand(200..300)
   puts "sleeping for #{sleep_time.round(2)} seconds"
   sleep sleep_time
 end
